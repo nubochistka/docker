@@ -27,10 +27,10 @@ RUN /usr/sbin/a2ensite default-ssl
 RUN /usr/sbin/a2enmod ssl
 
 
-RUN apt-get install -y supervisor && \
-    rm -rf /var/lib/apt/lists/* && \
-    sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
-RUN mkdir -p /etc/supervisor/conf.d
+RUN apt-get install -y supervisor 
+    #rm -rf /var/lib/apt/lists/* && \
+    #sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
+#RUN mkdir -p /etc/supervisor/conf.d
 COPY apache2.conf /etc/supervisor/conf.d/apache2.conf
 COPY memcached.conf /etc/supervisor/conf.d/memcached.conf
 
@@ -38,4 +38,4 @@ VOLUME ["/etc/supervisor/conf.d"]
 
 EXPOSE 80
 
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/supervisord.conf"]

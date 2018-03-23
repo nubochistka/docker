@@ -4,8 +4,6 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
-    volumes:
-      - "./mysql/mysql:/var/lib/mysql"
   web:
     build:
       context: ./apache
@@ -14,3 +12,5 @@ services:
       - "./apache/html:/var/www/html"
     ports:
       - "80:80" 
+    links:
+      - mysql
