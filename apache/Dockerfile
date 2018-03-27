@@ -10,7 +10,8 @@ RUN echo $TZ > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata && \
     apt-get clean
 
-RUN apt-get install -y apache2 \
+RUN apt-get update && \
+    apt-get install -y apache2 \
       software-properties-common
     #echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
@@ -19,7 +20,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php5-compat
 
 RUN apt-get update && \
-    apt-get install -y php5.6 libapache2-mod-fastcgi php5-fpm php5.6-mysql php5.6-memcached memcached libapache2-mod-php5
+    apt-get install -y libapache2-mod-fastcgi php5.6-fpm php5.6-mysql php5.6-memcached memcached
 
 COPY php5-fpm.conf /etc/apache2/conf-available/php5-fpm.conf
 
@@ -27,8 +28,6 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data 
 ENV APACHE_LOG_DIR /var/log/apache2 
 
-RUN /usr/sbin/a2ensite default-ssl
-RUN /usr/sbin/a2enmod ssl
 RUN a2enmod actions fastcgi alias && \
     a2enconf php5-fpm
 

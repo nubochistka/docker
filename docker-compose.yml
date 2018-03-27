@@ -7,14 +7,14 @@ services:
       context: ./mysql
       dockerfile: Dockerfile
     volumes:
-      - "./mysql/mysql:/var/lib/mysql" 
+      - "/home/ITRANSITION.CORP/a.ganetsky/docker/mysql/mysql:/var/lib/mysql" 
   
   web:
     build:
       context: ./apache
       dockerfile: Dockerfile
     volumes:
-      - "./apache/html:/var/www"
+      - "./apache/www:/var/www"
     ports:
       - "80:80" 
     depends_on: 
