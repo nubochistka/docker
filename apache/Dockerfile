@@ -13,8 +13,6 @@ RUN echo $TZ > /etc/timezone && \
 RUN apt-get update && \
     apt-get install -y apache2 \
       software-properties-common
-    #echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
 
 RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php5-compat

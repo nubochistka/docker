@@ -21,8 +21,6 @@ COPY my.cnf /etc/mysql/conf.d/my.cnf
 RUN rm /etc/mysql/mysql.conf.d/mysqld.cnf
 COPY mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 
-#VOLUME /home/ITRANSITION.CORP/a.ganetsky/docker/mysql/mysql/:/var/lib/mysql
-
 EXPOSE 3306
 CMD ["mysqld"]
 
