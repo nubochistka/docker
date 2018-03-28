@@ -20,7 +20,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php5-compat
 
 RUN apt-get update && \
-    apt-get install -y libapache2-mod-fastcgi php5.6-fpm php5.6-mysql php5.6-memcached memcached
+    apt-get install -y libapache2-mod-fastcgi php5.6-fpm php5.6-mysql php5.6-mbstring php5.6-gd php5.6-xml php5.6-memcached memcached
 
 COPY php5-fpm.conf /etc/apache2/conf-available/php5-fpm.conf
 
@@ -37,6 +37,8 @@ RUN apt-get install -y supervisor
 COPY apache2.conf /etc/supervisor/conf.d/apache2.conf
 COPY memcached.conf /etc/supervisor/conf.d/memcached.conf
 COPY php5.6-fpm.conf /etc/supervisor/conf.d/php5.6-fpm.conf
+RUN rm /etc/php/5.6/fpm/php.ini
+COPY php.ini /etc/php/5.6/fpm/php.ini
 
 EXPOSE 80
 

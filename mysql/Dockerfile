@@ -17,7 +17,9 @@ RUN apt-get update && \
     apt-get install -y mysql-server && \
     chown -R mysql:mysql /var/lib/mysql 
 
-ADD my.cnf /etc/mysql/conf.d/my.cnf 
+COPY my.cnf /etc/mysql/conf.d/my.cnf 
+RUN rm /etc/mysql/mysql.conf.d/mysqld.cnf
+COPY mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 
 #VOLUME /home/ITRANSITION.CORP/a.ganetsky/docker/mysql/mysql/:/var/lib/mysql
 
