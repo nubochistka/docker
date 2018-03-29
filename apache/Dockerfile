@@ -38,6 +38,9 @@ COPY php5.6-fpm.conf /etc/supervisor/conf.d/php5.6-fpm.conf
 RUN rm /etc/php/5.6/fpm/php.ini
 COPY php.ini /etc/php/5.6/fpm/php.ini
 
+RUN chmod 777 sites/default/settings.php && \
+    chmod 777 apache/www/html/sites/default
+
 EXPOSE 80
 
 CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/supervisord.conf"]

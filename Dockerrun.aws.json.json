@@ -1,0 +1,19 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "krevetka/docker_web",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    }
+  ],
+  "Volumes": [
+    {
+      "HostDirectory": "/var/app/www",
+      "ContainerDirectory": "/var/www"
+    }
+  ],
+  "Logging": "/var/log/apache2/error.log"
+}

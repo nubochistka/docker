@@ -7,7 +7,7 @@ services:
       context: ./mysql
       dockerfile: Dockerfile
     volumes:
-      - "/home/ITRANSITION.CORP/a.ganetsky/dockerAll/mysql:/var/lib/mysql" 
+      - "../mysql:/var/lib/mysql" 
 
   web:
     build:
